@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000/api'; // Flask backend
+ const API_BASE_URL = "http://13.126.177.220:5000";// Flask backend
 
 
 async function fetchHello() {
