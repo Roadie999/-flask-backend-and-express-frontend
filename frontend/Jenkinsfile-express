@@ -10,17 +10,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
-                    npm install
-                '''
+                dir('frontend') {
+                    sh '''
+                        npm install
+                    '''
+                }
             }
         }
 
         stage('Restart Express App') {
             steps {
-                sh '''
-                    pm2 restart express-app || pm2 start server.js --name express-app
-                '''
+                dir('frontend') {
+                    sh '''
+                        npx pm2 restart express-app || npx pm2 start app.js --name express-app
+                    '''
+                }
             }
         }
     }
