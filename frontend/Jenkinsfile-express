@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/Roadie999/-flask-backend-and-express-frontend.git'
+                git branch: 'master', url: 'https://github.com/Roadie999/-flask-backend-and-express-frontend.git'
             }
         }
 
