@@ -10,21 +10,25 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip
-                    pip install --no-cache-dir -r requirements.txt
-                '''
+                dir('backend') {
+                    sh '''
+                        python3 -m venv venv
+                        . venv/bin/activate
+                        pip install --upgrade pip
+                        pip install --no-cache-dir -r requirements.txt
+                    '''
+                }
             }
         }
 
         stage('Restart Flask App') {
             steps {
-                sh '''
-                    . venv/bin/activate
-                    pm2 restart flask-app || pm2 start app.py --name flask-app
-                '''
+                dir('backend') {
+                    sh '''
+                        . venv/bin/activate
+                        pm2 restart flask-app || pm2 start app.py --name flask-app
+                    '''
+                }
             }
         }
     }
